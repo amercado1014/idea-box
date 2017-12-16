@@ -11,14 +11,15 @@ form {
   margin: auto;
   width: 50%;
 }
-input {
-  /*display: block;*/
+
+textarea {
   width: 100%;
   height: 30px;
   margin-bottom: 10px;
   outline: none;
   border: 2px solid #D1D3D4;
   font-size: 20px;
+  resize: none;
 }
 
 input::placeholder {
@@ -32,7 +33,6 @@ h1 {
   font-family: 'Roboto Slab', serif;
 }
 
-
 button {
   outline: none;
 }
@@ -42,6 +42,8 @@ button {
   height: 35vh;
   position: fixed;
   width: 100%;
+  z-index: 1;
+  top: 0;
 }
 
 .main-title {
@@ -66,21 +68,28 @@ button {
   background-color: #045E55;
 }
 
+.search-section {
+  position: fixed;
+  top: 35vh;
+  width: 100%;
+  z-index: 1;
+  background-color: #FFFFFF;
+}
+
 .bottom-section {
   position: relative;
-  top: 35vh;
+  top: 45vh;
 }
 
 .search-bar {
-  margin-top: 25px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .idea {
   margin: 20px auto;
   width: 50%;
   border-bottom: 1px solid #D1D3D4;
-  
-  /*min-height: 20vh;*/
 }
 
 .idea-body {
