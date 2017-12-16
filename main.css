@@ -12,13 +12,14 @@ form {
   width: 50%;
 }
 
-input {
+textarea {
   width: 100%;
   height: 30px;
   margin-bottom: 10px;
   outline: none;
   border: 2px solid #D1D3D4;
   font-size: 20px;
+  resize: none;
 }
 
 input::placeholder {
@@ -41,6 +42,8 @@ button {
   height: 35vh;
   position: fixed;
   width: 100%;
+  z-index: 1;
+  top: 0;
 }
 
 .main-title {
@@ -66,17 +69,21 @@ button {
 }
 
 .search-section {
-  position: relative;
+  position: fixed;
   top: 35vh;
+  width: 100%;
+  z-index: 1;
+  background-color: #FFFFFF;
 }
 
 .bottom-section {
   position: relative;
-  top: 40vh;
+  top: 45vh;
 }
 
 .search-bar {
-  margin-top: 25px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .idea {
