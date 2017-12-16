@@ -11,8 +11,8 @@ form {
   margin: auto;
   width: 50%;
 }
+
 input {
-  /*display: block;*/
   width: 100%;
   height: 30px;
   margin-bottom: 10px;
@@ -31,7 +31,6 @@ h1 {
   margin-bottom: 30px;
   font-family: 'Roboto Slab', serif;
 }
-
 
 button {
   outline: none;
@@ -66,9 +65,14 @@ button {
   background-color: #045E55;
 }
 
-.bottom-section {
+.search-section {
   position: relative;
   top: 35vh;
+}
+
+.bottom-section {
+  position: relative;
+  top: 40vh;
 }
 
 .search-bar {
@@ -79,8 +83,6 @@ button {
   margin: 20px auto;
   width: 50%;
   border-bottom: 1px solid #D1D3D4;
-  
-  /*min-height: 20vh;*/
 }
 
 .idea-body {
