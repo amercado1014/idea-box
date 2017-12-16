@@ -15,4 +15,7 @@ $('.save-button').on('click', function (event) {
     </article>`);
 })
 
-
+$('.bottom-section').on('click', '.remove-button', function () {
+  console.log('remove click');
+  $(this).parent().remove();
+})
