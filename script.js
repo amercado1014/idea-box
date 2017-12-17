@@ -28,7 +28,7 @@ $('.save-button').on('click', function (event) {
 //   ideaNumber();
   // console.log($('.bottom-section .idea').length);
   $('.bottom-section').prepend(`
-    <article class="idea" id="${newIdeaObject.id}">
+    <article class="idea" data-associatedid="${newIdeaObject.id}">
       <button class="remove-button"></button>
       <h3 class="idea-title-output">${newIdeaObject.ideaTitle}</h3>
       <p class="idea-body">${newIdeaObject.idea}</p>
@@ -42,7 +42,14 @@ $('.bottom-section').on('click', '.remove-button', function() {
   $(this).parent().remove(); 
   // ideaNumber();
   // localStorage.remove();
+  // alert( $(this).data('associateid') );
 })
+
+$('.remove-button').on('click', function() {
+  var id = $(this).closest('article').data('associatedid');
+    console.log(id);
+    localStorage.removeItem(id)
+});
 
 
 
@@ -64,7 +71,7 @@ function getLocalStorage() {
     // console.log(parsedObject.idea);
 
     $('.bottom-section').prepend(`
-      <article class="idea" id="${parsedObject.id}">
+      <article class="idea" data-associatedid="${parsedObject.id}">
         <button class="remove-button"></button>
         <h3 class="idea-title-output">${parsedObject.ideaTitle}</h3>
         <p class="idea-body">${parsedObject.idea}</p>
@@ -75,6 +82,7 @@ function getLocalStorage() {
 
   }
 }
+
 
 
 
