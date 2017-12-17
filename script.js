@@ -104,6 +104,10 @@ $('.bottom-section').on('click', '.down-vote', function() {
   }
 });
 
+$('.search-bar').on('keyup', function() {
+  searchIdea();
+})
+
 function getLocalStorage() {
   for (var i = 0; i < localStorage.length; i++){
     console.log(localStorage.key(i));
@@ -128,7 +132,34 @@ function clearInputFields() {
   $('.idea-title-input').focus();
 }
 
+function searchTitle() {
+  var searchValue = $('.search-bar').val();
+  var title = $('.idea-title-output').length;
+  // var body = $('.idea-body').length;
 
+  // for(var i = 0; i < title; i++) {
+  //   if ($($('.idea-title-output')[i]).text().includes(searchValue)) {
+  //     $($('.idea-title-output')[i]).parent().show();
+  //   } else {
+  //     $($('.idea-title-output')[i]).parent().hide();
+  //   }
+  // }
+}
+function searchIdea() {
+  var searchValue = $('.search-bar').val();
+  var title = $('.idea-title-output').length;
+  var body = $('.idea-body').length;
+
+  for(var i = 0; i < body; i++) {
+    for(var i = 0; i < title; i++) {
+      if ($($('.idea-title-output')[i]).text().includes(searchValue) || $($('.idea-body')[i]).text().includes(searchValue)) {
+        $($('.idea-title-output')[i]).parent().show();
+      } else  {
+        $($('.idea-title-output')[i]).parent().hide();
+      }
+    } 
+  }
+}
 
 
 
