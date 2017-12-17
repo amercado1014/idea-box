@@ -6,6 +6,7 @@ function NewIdea(ideaTitle, idea) {
   this.ideaTitle = ideaTitle;
   this.idea = idea;
   this.id = (new Date).getTime();
+  this.quality = 'swill'
 }
 
 
@@ -24,8 +25,9 @@ $('.save-button').on('click', function (event) {
       <p class="idea-body" contenteditable="true">${newIdeaObject.idea}</p>
       <button class="up-vote vote-area"></button>
       <button class="down-vote vote-area"></button>
-      <p class="quality-id vote-area">quality: swill</p>
+      <p class="quality-id vote-area">quality: ${newIdeaObject.quality}</p>
     </article>`);
+  clearInputFields();
 })
 
 $('.bottom-section').on('click', '.remove-button', function() {
@@ -60,6 +62,48 @@ $('.bottom-section').on('keyup', '.idea-title-output', function() {
   }
 });
 
+$('.bottom-section').on('click', '.up-vote', function() {
+  var id = $(this).closest('article').data('associatedid');
+  var retrievedObject = localStorage.getItem(id);
+  var parsedObject = JSON.parse(retrievedObject);
+  console.log(parsedObject.quality);
+
+  if (parsedObject.quality === 'swill') {
+    parsedObject.quality = 'plausible';
+    var stringifiedObject = JSON.stringify(parsedObject);
+    localStorage.setItem(parsedObject.id, stringifiedObject);
+    $(this).siblings('.quality-id').text('quality: plausible');
+    console.log($(this).siblings().text());
+  } else {
+    parsedObject.quality = 'genius';
+    var stringifiedObject = JSON.stringify(parsedObject);
+    localStorage.setItem(parsedObject.id, stringifiedObject);
+    $(this).siblings('.quality-id').text('quality: genius');
+    console.log(localStorage);
+  }
+});
+
+$('.bottom-section').on('click', '.down-vote', function() {
+  var id = $(this).closest('article').data('associatedid');
+  var retrievedObject = localStorage.getItem(id);
+  var parsedObject = JSON.parse(retrievedObject);
+  console.log(parsedObject.quality);
+
+  if (parsedObject.quality === 'genius') {
+    parsedObject.quality = 'plausible';
+    var stringifiedObject = JSON.stringify(parsedObject);
+    localStorage.setItem(parsedObject.id, stringifiedObject);
+    $(this).siblings('.quality-id').text('quality: plausible');
+    console.log($(this).siblings().text());
+  } else {
+    parsedObject.quality = 'swill'
+    var stringifiedObject = JSON.stringify(parsedObject);
+    localStorage.setItem(parsedObject.id, stringifiedObject);
+    $(this).siblings('.quality-id').text('quality: swill');
+    console.log(localStorage);
+  }
+});
+
 function getLocalStorage() {
   for (var i = 0; i < localStorage.length; i++){
     console.log(localStorage.key(i));
@@ -72,11 +116,30 @@ function getLocalStorage() {
         <p class="idea-body" contenteditable="true">${parsedObject.idea}</p>
         <button class="up-vote vote-area"></button>
         <button class="down-vote vote-area"></button>
-        <p class="quality-id vote-area">quality: swill</p>
+        <p class="quality-id vote-area">quality: ${parsedObject.quality}</p>
       </article>`);
 
   }
 }
+
+function clearInputFields() {
+  $('.idea-title-input').val('');
+  $('.idea-input').val('');
+  $('.idea-title-input').focus();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
