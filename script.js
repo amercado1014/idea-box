@@ -1,5 +1,4 @@
-// var ideaTitle = $('.idea-title-input').val();
-// var idea = $('.idea-input').val();
+
 getLocalStorage();
 
 
@@ -13,25 +12,16 @@ function NewIdea(ideaTitle, idea) {
 
 $('.save-button').on('click', function (event) {
   event.preventDefault();
-  // var ideaTitle = $('.idea-title-input').val();
-  // var ideaBody = $('.idea-input').val();
   var newIdeaObject = new NewIdea($('.idea-title-input').val(), $('.idea-input').val());
   console.log(newIdeaObject);
   var stringifiedObject = JSON.stringify(newIdeaObject);
   localStorage.setItem(newIdeaObject.id, stringifiedObject);
-
-  var retrievedObject = localStorage.getItem(newIdeaObject.id);
-  var parsedObject = JSON.parse(retrievedObject);
-
-
   var $count = $('.bottom-section .idea').length;
-//   ideaNumber();
-  // console.log($('.bottom-section .idea').length);
   $('.bottom-section').prepend(`
     <article class="idea" data-associatedid="${newIdeaObject.id}">
       <button class="remove-button"></button>
-      <h3 class="idea-title-output">${newIdeaObject.ideaTitle}</h3>
-      <p class="idea-body">${newIdeaObject.idea}</p>
+      <h3 class="idea-title-output" contenteditable="true">${newIdeaObject.ideaTitle}</h3>
+      <p class="idea-body" contenteditable="true">${newIdeaObject.idea}</p>
       <button class="up-vote vote-area"></button>
       <button class="down-vote vote-area"></button>
       <p class="quality-id vote-area">quality: swill</p>
@@ -40,41 +30,46 @@ $('.save-button').on('click', function (event) {
 
 $('.bottom-section').on('click', '.remove-button', function() {
   $(this).parent().remove(); 
-  // ideaNumber();
-  // localStorage.remove();
-  // alert( $(this).data('associateid') );
+  var id = $(this).closest('article').data('associatedid');
+  localStorage.removeItem(id);
 })
 
-$('.remove-button').on('click', function() {
+$('.bottom-section').on('keyup', '.idea-title-output', function() {
   var id = $(this).closest('article').data('associatedid');
-    console.log(id);
-    localStorage.removeItem(id)
+  var retrievedObject = localStorage.getItem(id);
+  var parsedObject = JSON.parse(retrievedObject);
+  parsedObject.ideaTitle = $(this).text();
+  if (event.which == 13){
+    var stringifiedObject = JSON.stringify(parsedObject);
+    localStorage.setItem(parsedObject.id, stringifiedObject);
+    console.log(localStorage);
+  }
 });
 
+ $('.bottom-section').on('keyup', '.idea-body', function() {
+  var id = $(this).closest('article').data('associatedid');
+  var retrievedObject = localStorage.getItem(id);
+  var parsedObject = JSON.parse(retrievedObject);
 
+  parsedObject.idea = $(this).text();
 
-function ideaNumber() {
-  $('.bottom-section .idea').length;
-  console.log($('.bottom-section .idea').length);
-}
-
-function removeIdea() {
-  localStorage.removeItem($('.bottom-section newIdeaObject.id'));
-}
+  if (event.which == 13){
+    var stringifiedObject = JSON.stringify(parsedObject);
+    localStorage.setItem(parsedObject.id, stringifiedObject);
+    console.log(localStorage);
+  }
+});
 
 function getLocalStorage() {
   for (var i = 0; i < localStorage.length; i++){
     console.log(localStorage.key(i));
-    var retrievedObject =localStorage.getItem(localStorage.key(i));
-    var parsedObject = JSON.parse(retrievedObject)
-
-    // console.log(parsedObject.idea);
-
+    var retrievedObject = localStorage.getItem(localStorage.key(i));
+    var parsedObject = JSON.parse(retrievedObject);
     $('.bottom-section').prepend(`
       <article class="idea" data-associatedid="${parsedObject.id}">
         <button class="remove-button"></button>
-        <h3 class="idea-title-output">${parsedObject.ideaTitle}</h3>
-        <p class="idea-body">${parsedObject.idea}</p>
+        <h3 class="idea-title-output" contenteditable="true">${parsedObject.ideaTitle}</h3>
+        <p class="idea-body" contenteditable="true">${parsedObject.idea}</p>
         <button class="up-vote vote-area"></button>
         <button class="down-vote vote-area"></button>
         <p class="quality-id vote-area">quality: swill</p>
