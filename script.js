@@ -1,15 +1,12 @@
 
 getLocalStorage();
 
-
 function NewIdea(ideaTitle, idea) {
   this.ideaTitle = ideaTitle;
   this.idea = idea;
   this.id = (new Date).getTime();
   this.quality = 'swill'
 }
-
-
 
 $('.save-button').on('click', function (event) {
   event.preventDefault();
@@ -28,13 +25,13 @@ $('.save-button').on('click', function (event) {
       <p class="quality-id vote-area">quality: ${newIdeaObject.quality}</p>
     </article>`);
   clearInputFields();
-})
+});
 
 $('.bottom-section').on('click', '.remove-button', function() {
   $(this).parent().remove(); 
   var id = $(this).closest('article').data('associatedid');
   localStorage.removeItem(id);
-})
+});
 
 $('.bottom-section').on('keyup', '.idea-title-output', function() {
   var id = $(this).closest('article').data('associatedid');
@@ -48,13 +45,11 @@ $('.bottom-section').on('keyup', '.idea-title-output', function() {
   }
 });
 
- $('.bottom-section').on('keyup', '.idea-body', function() {
+$('.bottom-section').on('keyup', '.idea-body', function() {
   var id = $(this).closest('article').data('associatedid');
   var retrievedObject = localStorage.getItem(id);
   var parsedObject = JSON.parse(retrievedObject);
-
   parsedObject.idea = $(this).text();
-
   if (event.which == 13){
     var stringifiedObject = JSON.stringify(parsedObject);
     localStorage.setItem(parsedObject.id, stringifiedObject);
@@ -66,8 +61,6 @@ $('.bottom-section').on('click', '.up-vote', function() {
   var id = $(this).closest('article').data('associatedid');
   var retrievedObject = localStorage.getItem(id);
   var parsedObject = JSON.parse(retrievedObject);
-  console.log(parsedObject.quality);
-
   if (parsedObject.quality === 'swill') {
     parsedObject.quality = 'plausible';
     var stringifiedObject = JSON.stringify(parsedObject);
@@ -87,8 +80,6 @@ $('.bottom-section').on('click', '.down-vote', function() {
   var id = $(this).closest('article').data('associatedid');
   var retrievedObject = localStorage.getItem(id);
   var parsedObject = JSON.parse(retrievedObject);
-  console.log(parsedObject.quality);
-
   if (parsedObject.quality === 'genius') {
     parsedObject.quality = 'plausible';
     var stringifiedObject = JSON.stringify(parsedObject);
@@ -122,7 +113,6 @@ function getLocalStorage() {
         <button class="down-vote vote-area"></button>
         <p class="quality-id vote-area">quality: ${parsedObject.quality}</p>
       </article>`);
-
   }
 }
 
@@ -132,27 +122,13 @@ function clearInputFields() {
   $('.idea-title-input').focus();
 }
 
-function searchTitle() {
-  var searchValue = $('.search-bar').val();
-  var title = $('.idea-title-output').length;
-  // var body = $('.idea-body').length;
-
-  // for(var i = 0; i < title; i++) {
-  //   if ($($('.idea-title-output')[i]).text().includes(searchValue)) {
-  //     $($('.idea-title-output')[i]).parent().show();
-  //   } else {
-  //     $($('.idea-title-output')[i]).parent().hide();
-  //   }
-  // }
-}
 function searchIdea() {
-  var searchValue = $('.search-bar').val();
+  var searchValue = $('.search-bar').val().toLowerCase();
   var title = $('.idea-title-output').length;
   var body = $('.idea-body').length;
-
   for(var i = 0; i < body; i++) {
     for(var i = 0; i < title; i++) {
-      if ($($('.idea-title-output')[i]).text().includes(searchValue) || $($('.idea-body')[i]).text().includes(searchValue)) {
+      if ($($('.idea-title-output')[i]).text().toLowerCase().includes(searchValue) || $($('.idea-body')[i]).text().toLowerCase().includes(searchValue)) {
         $($('.idea-title-output')[i]).parent().show();
       } else  {
         $($('.idea-title-output')[i]).parent().hide();
