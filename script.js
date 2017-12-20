@@ -125,7 +125,14 @@ function editIdeaTitle() {
   }
 }
 
-
+// function searchIdea() {
+//   var searchValue = $('.search-bar').val().toLowerCase();
+//   var title = $('.idea-title-output');
+//   var body = [$('.idea-body')];
+//   body.forEach(function (value) {
+//     console.log(value.idea);
+//   });
+// }
 
 
 
