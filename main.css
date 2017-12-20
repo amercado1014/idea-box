@@ -1,36 +1,35 @@
 *,
 *:after,
 *:before {
-box-sizing: border-box;
-margin: 0;
-font-family: 'Open Sans', sans-serif; 
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif; 
+  margin: 0;
 }
 
-/* top section*/
 form {
   margin: auto;
   width: 50%;
 }
 
 textarea {
-  width: 100%;
+  border: 2px solid #D1D3D4;
+  font-size: 20px;
   height: 30px;
   margin-bottom: 10px;
   outline: none;
-  border: 2px solid #D1D3D4;
-  font-size: 20px;
   resize: none;
+  width: 100%;
 }
 
-input::placeholder {
+textarea::placeholder {
  color: #D1D3D4;
 }
 
 h1 {
-  font-size: 60px;
-  margin-top: 30px;
-  margin-bottom: 30px;
   font-family: 'Roboto Slab', serif;
+  font-size: 60px;
+  margin-bottom: 30px;
+  margin-top: 30px;
 }
 
 button {
@@ -39,16 +38,16 @@ button {
 
 .top-section {
   background-color: #E5F3F2;
-  height: 35vh;
+  height: 285px;
   position: fixed;
+  top: 0;
   width: 100%;
   z-index: 1;
-  top: 0;
 }
 
 .main-title {
-  text-align: center;
   color: #00A79D;
+  text-align: center;
 }
 
 .box-lettering {
@@ -59,9 +58,9 @@ button {
 .save-button {
   background-color: #00A79D;
   color: #FFFFFF;
-  width: 100%;
-  height: 30px;
   font-size: 16px;
+  height: 35px;
+  width: 100%;
 }
 
 .save-button:hover {
@@ -69,47 +68,50 @@ button {
 }
 
 .search-section {
+  background-color: #FFFFFF;
+  height: 70px;
   position: fixed;
-  top: 35vh;
+  top: 285px;
   width: 100%;
   z-index: 1;
-  background-color: #FFFFFF;
+}
+
+.search-bar {
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .bottom-section {
   position: relative;
-  top: 45vh;
-}
-
-.search-bar {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  top: 350px;
 }
 
 .idea {
+  border-bottom: 1px solid #D1D3D4;
   margin: 20px auto;
   width: 50%;
-  border-bottom: 1px solid #D1D3D4;
 }
 
 .idea-body {
   color: #939598;
   min-height: 60px;
+  outline: none;
 }
 
 .idea-title-output {
-  display: inline;
   color: #6D6E71;
+  display: inline;
   font-family: 'Roboto Slab', serif;
   font-size: 22px;
+  outline: none;
 }
 
 .remove-button {
-  float: right;
   background-image: url('images/delete.svg');
+  border: none;
+  float: right;
   height: 25px;
   width: 25px;
-  border: none;
 }
 
 .remove-button:hover {
@@ -117,12 +119,12 @@ button {
 }
 
 .quality-id {
-  display: inline;
-  color: #6D6E71;
-  position: relative;
   bottom: 6px;
+  color: #6D6E71;
+  display: inline;
   font-family: 'Roboto Slab', serif;
   font-weight: 400;
+  position: relative;
 }
 
 .vote-area {
@@ -132,9 +134,9 @@ button {
 
 .up-vote {
   background-image: url('images/upvote.svg');
+  border: none;
   height: 25px;
   width: 25px;
-  border: none;
 }
 
 .up-vote:hover {
@@ -143,18 +145,18 @@ button {
 
 .down-vote {
   background-image: url('images/downvote.svg');
-  height: 25px;
-  width: 25px;
   border: none;
+  height: 25px;
   margin-left: 11px;
   margin-right: 11px;
+  width: 25px;
 }
 
 .down-vote:hover {
   background-image: url('images/downvote-hover.svg');
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 600px) {
 
   form {
     width: 90%;
@@ -162,8 +164,20 @@ button {
 
   h1 {
     font-size: 40px;
-    margin-top: 5px; 
     margin-bottom: 10px;
+    margin-top: 5px; 
+  }
+
+  .top-section {
+    height: 270px;
+  }
+
+  .search-section {
+    top: 270px;
+  }
+
+  .bottom-section {
+    top: 330px;
   }
 
   .idea-input {
@@ -174,23 +188,3 @@ button {
     width: 90%;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

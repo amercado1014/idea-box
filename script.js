@@ -4,7 +4,7 @@ function NewIdea(ideaTitle, idea) {
   this.ideaTitle = ideaTitle;
   this.idea = idea;
   this.id = (new Date).getTime();
-  this.quality = 'swill'
+  this.quality = 'swill';
 }
 
 $('.save-button').on('click', saveIdea); 
@@ -124,16 +124,3 @@ function editIdeaTitle() {
     convertObjectToLocalStorage(parsedObject);
   }
 }
-
-// function searchIdea() {
-//   var searchValue = $('.search-bar').val().toLowerCase();
-//   var title = $('.idea-title-output');
-//   var body = [$('.idea-body')];
-//   body.forEach(function (value) {
-//     console.log(value.idea);
-//   });
-// }
-
-
-
-
